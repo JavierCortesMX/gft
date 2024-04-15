@@ -1,19 +1,19 @@
 # gft
-El código es una aplicación de servidor simple que utiliza la biblioteca MuServer para manejar las solicitudes HTTP. Esta aplicación permite a los clientes hacer reservas en un restaurante y al propietario del restaurante ver todas las reservas para un día en particular.
+The code is a simple server application that uses the MuServer library to handle HTTP requests. This app allows customers to make reservations at a restaurant and the restaurant owner to view all reservations for a particular day.
 
-1.-Se crea un mapa estático bookings para almacenar las reservas. La clave es una cadena que representa la fecha de la reserva y el valor es una lista de cadenas que representan las direcciones IP de los clientes que han hecho una reserva para esa fecha.
+1.-A static bookings map is created to store the reservations. The key is a string representing the date of the reservation and the value is a list of strings representing the IP addresses of customers who have made a reservation for that date.
 
-2.-Se inicia un servidor HTTP con MuServerBuilder.httpServer().
+2.-An HTTP server is started with MuServerBuilder.httpServer().
 
-3.-Se añade un manejador para las solicitudes POST a la ruta "/book". Cuando un cliente hace una solicitud a esta ruta, la aplicación lee la fecha de la reserva del cuerpo de la solicitud, añade la dirección IP del cliente a la lista de reservas para esa fecha en el mapa bookings, y envía una respuesta al cliente confirmando la reserva.
+3.-A handler for POST requests is added to the "/book" route. When a client makes a request to this route, the application reads the reservation date from the request body, adds the client's IP address to the list of reservations for that date in the bookings map, and sends a response to the client confirming the reserve.
 
-4.-Se añade un manejador para las solicitudes GET a la ruta "/bookings/:date". Cuando el propietario del restaurante hace una solicitud a esta ruta, la aplicación obtiene la fecha de la ruta, busca todas las reservas para esa fecha en el mapa bookings, y envía una respuesta al propietario del restaurante con la lista de reservas.
+4.-A handler for GET requests is added to the "/bookings/:date" route. When the restaurant owner makes a request to this route, the application obtains the date of the route, searches for all reservations for that date on the bookings map, and sends a response to the restaurant owner with the list of reservations.
 
-Finalmente, se inicia el servidor y se imprime la URI del servidor en la consola.
+Finally, the server is started and the server URI is printed to the console.
 
-Para agregar el paquete io.muserver.* al proyecto Java, necesitas agregar la dependencia correspondiente a tu archivo de configuración de Maven o Gradle.
+To add the io.muserver.* package to your Java project, you need to add the corresponding dependency to your Maven or Gradle configuration file.
 
-Si estás utilizando Maven, agrega la siguiente dependencia a tu archivo pom.xml:
+If you are using Maven, add the following dependency to your pom.xml file:
 
 ```
 <dependencies>
@@ -24,12 +24,12 @@ Si estás utilizando Maven, agrega la siguiente dependencia a tu archivo pom.xml
     </dependency>
 </dependencies>
 ```
-Si estás utilizando Gradle, agrega la siguiente dependencia a tu archivo build.gradle:
+If you are using Gradle, add the following dependency to your build.gradle file:
 ```
 dependencies {
     implementation 'io.muserver:mu-server:1.0.8'
 }
 ```
-Después de agregar la dependencia, ejecuta el comando de construcción de tu proyecto (mvn install para Maven o gradle build para Gradle) para descargar e instalar la biblioteca en tu proyecto.
+After adding the dependency, run your project build command (mvn install for Maven or gradle build for Gradle) to download and install the library in your project.
 
-Para probar la aplicación de reserva de restaurantes, puedes usar una biblioteca de pruebas unitarias como JUnit y una biblioteca para hacer solicitudes HTTP como OkHttp.
+To test your restaurant reservation app, you can use a unit testing library like JUnit and an HTTP request library like OkHttp.
