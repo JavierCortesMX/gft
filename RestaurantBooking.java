@@ -14,20 +14,20 @@ import io.muserver.*;
 import java.util.*;
 
 public class RestaurantBooking {
-    // Almacenar las reservas en un mapa, con la fecha como clave y una lista de reservas como valor
+    // Store reservations on a map, with the date as the key and a list of reservations as the value
     private static Map<String, List<String>> bookings = new HashMap<>();
 
     public static void main(String[] args) {
         MuServer server = MuServerBuilder.httpServer()
             .addHandler(Method.POST, "/book", (request, response, pathParams) -> {
-                // El cliente envía la fecha de la reserva en el cuerpo de la solicitud
+                // The customer sends the date of the reservation in the body of the request
                 String date = request.readBodyAsString();
-                // Añadir la reserva a la lista de reservas para esa fecha
+                // Add the reservation to the reservation list for that date
                 bookings.computeIfAbsent(date, k -> new ArrayList<>()).add(request.remoteAddress());
                 response.write("Booking confirmed for " + date);
             })
             .addHandler(Method.GET, "/bookings/:date", (request, response, pathParams) -> {
-                // El propietario del restaurante solicita las reservas para una fecha específica
+                // The restaurant owner requests reservations for a specific date
                 String date = pathParams.get("date");
                 List<String> dateBookings = bookings.getOrDefault(date, Collections.emptyList());
                 response.write("Bookings for " + date + ": " + dateBookings);
