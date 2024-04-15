@@ -15,6 +15,7 @@ Para agregar el paquete io.muserver.* al proyecto Java, necesitas agregar la dep
 
 Si estás utilizando Maven, agrega la siguiente dependencia a tu archivo pom.xml:
 
+```
 <dependencies>
     <dependency>
         <groupId>io.muserver</groupId>
@@ -22,13 +23,13 @@ Si estás utilizando Maven, agrega la siguiente dependencia a tu archivo pom.xml
         <version>1.0.8</version>
     </dependency>
 </dependencies>
-
+```
 Si estás utilizando Gradle, agrega la siguiente dependencia a tu archivo build.gradle:
-
+```
 dependencies {
     implementation 'io.muserver:mu-server:1.0.8'
 }
-
+```
 Después de agregar la dependencia, ejecuta el comando de construcción de tu proyecto (mvn install para Maven o gradle build para Gradle) para descargar e instalar la biblioteca en tu proyecto.
 
 Para probar la aplicación de reserva de restaurantes, puedes usar una biblioteca de pruebas unitarias como JUnit y una biblioteca para hacer solicitudes HTTP como OkHttp.
